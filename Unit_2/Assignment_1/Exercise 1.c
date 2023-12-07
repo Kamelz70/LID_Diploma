@@ -1,13 +1,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#define X (4 + 3)
+#define Y (X + 3)
 int main(void) {
-
-	int y = (1, 2, 3);
-	int x = 1;
-	y = 1, 2 + x++, 3;
-	printf("%d %d", x, y);
+	char *px, py;
+	int hi = Y;
+	px = hi;
+	printf("%d", sizeof(py));
 
 	return EXIT_SUCCESS;
 }
