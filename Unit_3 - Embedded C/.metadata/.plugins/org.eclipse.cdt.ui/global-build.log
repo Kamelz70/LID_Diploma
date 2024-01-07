@@ -1,0 +1,17 @@
+07:52:32 **** Incremental Build of configuration Debug for project Lesson_1_toggle_LED ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F1 -DSTM32F103C6Tx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Lesson_1_toggle_LED.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\Trainings\LearnInDepth Embedded\Code\Unit_3 - Embedded C\Lesson_1_toggle_LED\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lesson_1_toggle_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lesson_1_toggle_LED.elf
+ 
+arm-none-eabi-size  Lesson_1_toggle_LED.elf 
+arm-none-eabi-objdump -h -S Lesson_1_toggle_LED.elf  > "Lesson_1_toggle_LED.list"
+arm-none-eabi-objcopy  -O ihex Lesson_1_toggle_LED.elf  "Lesson_1_toggle_LED.hex"
+   text	   data	    bss	    dec	    hex	filename
+    660	      8	   1568	   2236	    8bc	Lesson_1_toggle_LED.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lesson_1_toggle_LED.list
+ 
+Finished building: Lesson_1_toggle_LED.hex
+ 

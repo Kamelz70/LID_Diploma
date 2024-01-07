@@ -3,11 +3,17 @@
 #include <stdlib.h>
 #define X (4 + 3)
 #define Y (X + 3)
+typedef struct emp
+{
+	char *name;
+	int salary;
+} employee;
 int main(void) {
-	char *px, py;
-	int hi = Y;
-	px = hi;
-	printf("%d", sizeof(py));
+	// employee a = {"ahmed", 5000};
+	// a.salary = 300;
+	// printf("sssssssssssss", a.salary);
+	printf("sssssssssssss");
+	// printf("%d", a.salary);
 
 	return EXIT_SUCCESS;
 }
