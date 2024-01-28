@@ -1,0 +1,37 @@
+// Author Mohamed Kamel
+#ifndef ALARM_MONITOR_H
+#define ALARM_MONITOR_H
+
+#include "state.h"
+#include "driver.h"
+#include "platform_types.h"
+// //////////////////////////////////////////
+// States
+// //////////////////////////////////////////
+enum
+{
+    AM_ALARM_ON,
+    AM_ALARM_OFF,
+    AM_TIMER_INIT
+} alarmMonitor_state_id;
+// //////////////////////////////////////////
+// export state
+// //////////////////////////////////////////
+extern void (*alarmMonitor_state)(void);
+
+// //////////////////////////////////////////
+// Prototypes
+// //////////////////////////////////////////
+
+STATE_DEFINE(AM_ALARM_ON);
+STATE_DEFINE(AM_ALARM_OFF);
+STATE_DEFINE(AM_TIMER_INIT);
+void highPressureDetected();
+
+// //////////////////////////////////////////
+// Configuration
+// //////////////////////////////////////////
+
+#define ALARM_DURATION 60
+
+#endif /* ALARM_MONITOR_H */
