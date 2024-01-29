@@ -11,11 +11,11 @@ void (*alarm_state)();
 // //////////////////////////////////////////
 void alarmOn()
 {
-    alarm_state = A_ALARM_ON;
+    alarm_state = STATE(A_ALARM_ON);
 }
 void alarmOff()
 {
-    alarm_state = A_ALARM_OFF;
+    alarm_state = STATE(A_ALARM_OFF);
 }
 
 // //////////////////////////////////////////
@@ -28,7 +28,7 @@ STATE_DEFINE(A_INIT)
     // init GPIO
     GPIO_INITIALIZATION();
     // init alarm WITH 0
-    Set_Alarm_actuator(0);
+    Set_Alarm_actuator(1);
     // set first state
     alarm_state = STATE(A_WAITING);
 }
@@ -37,6 +37,7 @@ STATE_DEFINE(A_ALARM_ON)
     // set state
     alarm_state_id = A_ALARM_ON;
     // set alarm
+    Set_Alarm_actuator(0);
     // next state transition
     alarm_state = STATE(A_WAITING);
 }
@@ -45,7 +46,7 @@ STATE_DEFINE(A_ALARM_OFF)
     // set state
     alarm_state_id = A_ALARM_OFF;
     // set alarm
-    Set_Alarm_actuator(0);
+    Set_Alarm_actuator(1);
     // next state transition
     alarm_state = STATE(A_WAITING);
 }

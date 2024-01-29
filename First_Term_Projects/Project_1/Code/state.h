@@ -15,7 +15,7 @@
 // //////////////////////////////////////////
 // State connections
 // //////////////////////////////////////////
-void send_pressure_val(int pVal);
+void sendPressureVal(int pVal);
 void highPressureDetected();
 void alarmOn();
 void alarmOff();

@@ -4,7 +4,10 @@
 // //////////////////////////////////////////
 vuint32 pVal;
 const uint32 pollingPeriod = PSENSOR_POLLING_PERIOD;
-// state declaration
+
+// //////////////////////////////////////////
+// State declaration
+// //////////////////////////////////////////
 void (*pressureSensor_state)();
 
 // //////////////////////////////////////////
@@ -46,7 +49,7 @@ STATE_DEFINE(PS_WAITING)
     pressureSensor_state_id = PS_WAITING;
     // Await timer
     // delay(pollingPeriod);
-    delay(pollingPeriod * 100);
+    Delay(pollingPeriod * 100);
     // next state transition
     pressureSensor_state = STATE(PS_READING);
 }

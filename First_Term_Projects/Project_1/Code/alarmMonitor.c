@@ -15,7 +15,7 @@ void (*alarmMonitor_state)();
 // //////////////////////////////////////////
 void highPressureDetected()
 {
-    alarmMonitor_state_id = AM_ALARM_ON;
+    alarmMonitor_state = STATE(AM_ALARM_ON);
 }
 
 // //////////////////////////////////////////
@@ -27,7 +27,7 @@ STATE_DEFINE(AM_TIMER_INIT)
     alarmMonitor_state_id = AM_TIMER_INIT;
     // initialize timers
     // next state transition
-    alarmMonitor_state_id = STATE(AM_ALARM_OFF);
+    alarmMonitor_state = STATE(AM_ALARM_OFF);
 }
 
 STATE_DEFINE(AM_ALARM_OFF)
@@ -41,10 +41,12 @@ STATE_DEFINE(AM_ALARM_OFF)
 
 STATE_DEFINE(AM_ALARM_ON)
 {
+    alarmMonitor_state_id = AM_ALARM_ON;
     // start alarm
     alarmOn();
     // delay(alarmDuration);
-    delay(alarmDuration * 100);
+    // Delay(alarmDuration * 100);
+    Delay(600000);
     // next state transition
-    alarmMonitor_state_id = STATE(AM_ALARM_OFF);
+    alarmMonitor_state = STATE(AM_ALARM_OFF);
 }

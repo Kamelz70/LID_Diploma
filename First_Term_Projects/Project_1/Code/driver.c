@@ -3,7 +3,8 @@
 #include <stdio.h>
 void Delay(int nCount)
 {
-	for(; nCount != 0; nCount--);
+	for (; nCount != 0; nCount--)
+		;
 }
 
 int getPressureVal(){
