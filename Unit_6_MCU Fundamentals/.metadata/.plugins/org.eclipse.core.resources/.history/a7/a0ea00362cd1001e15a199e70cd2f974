@@ -1,0 +1,70 @@
+
+
+#define RCC_BASE 0x40021000
+#define RCC_APB2ENR *(volatile unsigned int*) (RCC_BASE + 0x18)
+
+#define GPIOA_BASE 0x40010800
+#define GPIOA_CRL *(volatile unsigned int*) (GPIOA_BASE + 0x00)
+#define GPIOA_CRH *(volatile unsigned int*) (GPIOA_BASE + 0x04)
+#define GPIOA_ODR *(volatile unsigned int*) (GPIOA_BASE + 0x0C)
+
+
+#define AFIO_BASE 0x40010000
+#define AFIO_EXTICR1 *(volatile unsigned int*) (AFIO_BASE + 0x08)
+//AFIO is initiated by default
+
+#define EXTI_BASE 0x40010400
+#define EXTI_IMR *(volatile unsigned int*) (EXTI_BASE + 0x00)
+#define EXTI_RTSR *(volatile unsigned int*) (EXTI_BASE + 0x08)
+#define EXTI_PR *(volatile unsigned int*) (EXTI_BASE + 0x14)
+
+#define NVIC_ISER0 *(volatile unsigned int*) (0xE000E100)
+
+
+void clock_init()
+{
+	//AFIO clock enabling
+	RCC_APB2ENR |= 1<<0;
+	//GPIO A clock enabling
+	RCC_APB2ENR |= 1<<2;
+}
+
+void GPIO_INIT()
+{
+	//GPIO A 0 floating input
+	GPIOA_CRL |= 1<<2;
+	//GPIO A 13 	output mode, max speed 50 MHZ
+	GPIOA_CRH |= 0b11<<20;
+	//GPIO A 13 General purpose output push-pull
+	GPIOA_CRH &= ~(0b11<<22);
+}
+
+void interupt_init()
+{
+	//removing mask from EXTI0 line 0
+	EXTI_IMR |= 1<<0;
+	//rising trigger
+	EXTI_RTSR |= 1<<0;
+	//removing mask from NVIC EXTI0 (IRQ6)
+	NVIC_ISER0 |= 1<<6;
+
+}
+
+int main(void)
+{
+	clock_init();
+	GPIO_INIT();
+	interupt_init();
+}
+
+void EXTI0_IRQHandler()
+{
+	GPIOA_ODR |= 1<<13;
+	int i;
+	for(i=0; i<60000; i++);
+	GPIOA_ODR &= ~(1<<13);
+
+	EXTI_PR |= 1<<0;
+
+}
+

@@ -1,0 +1,181 @@
+In archive libEXT_Interrupts.a:
+
+main.o:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000000  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  00000034  2**0
+                  ALLOC
+  3 .text.main    0000005c  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  4 .text.__vector_1 00000042  00000000  00000000  00000090  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  5 .text.__vector_2 00000042  00000000  00000000  000000d2  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  6 .text.__vector_3 00000042  00000000  00000000  00000114  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+
+Disassembly of section .text.main:
+
+00000000 <main>:
+   0:	8f b7       	in	r24, 0x3f	; 63
+   2:	8f 77       	andi	r24, 0x7F	; 127
+   4:	8f bf       	out	0x3f, r24	; 63
+   6:	8b 98       	cbi	0x11, 3	; 17
+   8:	93 9a       	sbi	0x12, 3	; 18
+   a:	8b b7       	in	r24, 0x3b	; 59
+   c:	80 6e       	ori	r24, 0xE0	; 224
+   e:	8b bf       	out	0x3b, r24	; 59
+  10:	85 b7       	in	r24, 0x35	; 53
+  12:	88 60       	ori	r24, 0x08	; 8
+  14:	85 bf       	out	0x35, r24	; 53
+  16:	85 b7       	in	r24, 0x35	; 53
+  18:	8b 7f       	andi	r24, 0xFB	; 251
+  1a:	85 bf       	out	0x35, r24	; 53
+  1c:	85 b7       	in	r24, 0x35	; 53
+  1e:	81 60       	ori	r24, 0x01	; 1
+  20:	85 bf       	out	0x35, r24	; 53
+  22:	85 b7       	in	r24, 0x35	; 53
+  24:	8d 7f       	andi	r24, 0xFD	; 253
+  26:	85 bf       	out	0x35, r24	; 53
+  28:	84 b7       	in	r24, 0x34	; 52
+  2a:	80 74       	andi	r24, 0x40	; 64
+  2c:	84 bf       	out	0x34, r24	; 52
+  2e:	8f b7       	in	r24, 0x3f	; 63
+  30:	80 68       	ori	r24, 0x80	; 128
+  32:	8f bf       	out	0x3f, r24	; 63
+  34:	81 b3       	in	r24, 0x11	; 17
+  36:	83 7f       	andi	r24, 0xF3	; 243
+  38:	81 bb       	out	0x11, r24	; 17
+  3a:	ba 98       	cbi	0x17, 2	; 23
+  3c:	81 b3       	in	r24, 0x11	; 17
+  3e:	80 6e       	ori	r24, 0xE0	; 224
+  40:	81 bb       	out	0x11, r24	; 17
+  42:	20 e9       	ldi	r18, 0x90	; 144
+  44:	31 e0       	ldi	r19, 0x01	; 1
+  46:	82 b3       	in	r24, 0x12	; 18
+  48:	8f 71       	andi	r24, 0x1F	; 31
+  4a:	82 bb       	out	0x12, r24	; 18
+  4c:	80 e1       	ldi	r24, 0x10	; 16
+  4e:	97 e2       	ldi	r25, 0x27	; 39
+  50:	f9 01       	movw	r30, r18
+  52:	31 97       	sbiw	r30, 0x01	; 1
+  54:	01 f4       	brne	.+0      	; 0x56 <main+0x56>
+  56:	01 97       	sbiw	r24, 0x01	; 1
+  58:	01 f4       	brne	.+0      	; 0x5a <main+0x5a>
+  5a:	00 c0       	rjmp	.+0      	; 0x5c <__SREG__+0x1d>
+
+Disassembly of section .text.__vector_1:
+
+00000000 <__vector_1>:
+   0:	1f 92       	push	r1
+   2:	0f 92       	push	r0
+   4:	0f b6       	in	r0, 0x3f	; 63
+   6:	0f 92       	push	r0
+   8:	11 24       	eor	r1, r1
+   a:	2f 93       	push	r18
+   c:	3f 93       	push	r19
+   e:	8f 93       	push	r24
+  10:	9f 93       	push	r25
+  12:	ef 93       	push	r30
+  14:	ff 93       	push	r31
+  16:	95 9a       	sbi	0x12, 5	; 18
+  18:	80 e1       	ldi	r24, 0x10	; 16
+  1a:	97 e2       	ldi	r25, 0x27	; 39
+  1c:	20 e9       	ldi	r18, 0x90	; 144
+  1e:	31 e0       	ldi	r19, 0x01	; 1
+  20:	f9 01       	movw	r30, r18
+  22:	31 97       	sbiw	r30, 0x01	; 1
+  24:	01 f4       	brne	.+0      	; 0x26 <__vector_1+0x26>
+  26:	01 97       	sbiw	r24, 0x01	; 1
+  28:	01 f4       	brne	.+0      	; 0x2a <__vector_1+0x2a>
+  2a:	95 98       	cbi	0x12, 5	; 18
+  2c:	ff 91       	pop	r31
+  2e:	ef 91       	pop	r30
+  30:	9f 91       	pop	r25
+  32:	8f 91       	pop	r24
+  34:	3f 91       	pop	r19
+  36:	2f 91       	pop	r18
+  38:	0f 90       	pop	r0
+  3a:	0f be       	out	0x3f, r0	; 63
+  3c:	0f 90       	pop	r0
+  3e:	1f 90       	pop	r1
+  40:	18 95       	reti
+
+Disassembly of section .text.__vector_2:
+
+00000000 <__vector_2>:
+   0:	1f 92       	push	r1
+   2:	0f 92       	push	r0
+   4:	0f b6       	in	r0, 0x3f	; 63
+   6:	0f 92       	push	r0
+   8:	11 24       	eor	r1, r1
+   a:	2f 93       	push	r18
+   c:	3f 93       	push	r19
+   e:	8f 93       	push	r24
+  10:	9f 93       	push	r25
+  12:	ef 93       	push	r30
+  14:	ff 93       	push	r31
+  16:	96 9a       	sbi	0x12, 6	; 18
+  18:	80 e1       	ldi	r24, 0x10	; 16
+  1a:	97 e2       	ldi	r25, 0x27	; 39
+  1c:	20 e9       	ldi	r18, 0x90	; 144
+  1e:	31 e0       	ldi	r19, 0x01	; 1
+  20:	f9 01       	movw	r30, r18
+  22:	31 97       	sbiw	r30, 0x01	; 1
+  24:	01 f4       	brne	.+0      	; 0x26 <__vector_2+0x26>
+  26:	01 97       	sbiw	r24, 0x01	; 1
+  28:	01 f4       	brne	.+0      	; 0x2a <__vector_2+0x2a>
+  2a:	96 98       	cbi	0x12, 6	; 18
+  2c:	ff 91       	pop	r31
+  2e:	ef 91       	pop	r30
+  30:	9f 91       	pop	r25
+  32:	8f 91       	pop	r24
+  34:	3f 91       	pop	r19
+  36:	2f 91       	pop	r18
+  38:	0f 90       	pop	r0
+  3a:	0f be       	out	0x3f, r0	; 63
+  3c:	0f 90       	pop	r0
+  3e:	1f 90       	pop	r1
+  40:	18 95       	reti
+
+Disassembly of section .text.__vector_3:
+
+00000000 <__vector_3>:
+   0:	1f 92       	push	r1
+   2:	0f 92       	push	r0
+   4:	0f b6       	in	r0, 0x3f	; 63
+   6:	0f 92       	push	r0
+   8:	11 24       	eor	r1, r1
+   a:	2f 93       	push	r18
+   c:	3f 93       	push	r19
+   e:	8f 93       	push	r24
+  10:	9f 93       	push	r25
+  12:	ef 93       	push	r30
+  14:	ff 93       	push	r31
+  16:	97 9a       	sbi	0x12, 7	; 18
+  18:	80 e1       	ldi	r24, 0x10	; 16
+  1a:	97 e2       	ldi	r25, 0x27	; 39
+  1c:	20 e9       	ldi	r18, 0x90	; 144
+  1e:	31 e0       	ldi	r19, 0x01	; 1
+  20:	f9 01       	movw	r30, r18
+  22:	31 97       	sbiw	r30, 0x01	; 1
+  24:	01 f4       	brne	.+0      	; 0x26 <__vector_3+0x26>
+  26:	01 97       	sbiw	r24, 0x01	; 1
+  28:	01 f4       	brne	.+0      	; 0x2a <__vector_3+0x2a>
+  2a:	97 98       	cbi	0x12, 7	; 18
+  2c:	ff 91       	pop	r31
+  2e:	ef 91       	pop	r30
+  30:	9f 91       	pop	r25
+  32:	8f 91       	pop	r24
+  34:	3f 91       	pop	r19
+  36:	2f 91       	pop	r18
+  38:	0f 90       	pop	r0
+  3a:	0f be       	out	0x3f, r0	; 63
+  3c:	0f 90       	pop	r0
+  3e:	1f 90       	pop	r1
+  40:	18 95       	reti
